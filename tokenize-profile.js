@@ -91,7 +91,7 @@ function main(outputDirectory, outputFilename) {
         fileOutputPath = userFolderPath + '/' + outputFilename
 
     getMkdirPromise(userFolderPath).then(function() {
-      var tokens = createTokens(inputData, rawPrivateKey)
+      var tokens = createTokens(inputData, rawPrivateKey, rawPublicKey)
       verifyTokens(tokens, rawPublicKey)
       writeTokens(tokens, inputData, fileOutputPath)
     }, function(err) {
