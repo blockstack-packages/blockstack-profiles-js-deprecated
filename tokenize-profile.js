@@ -55,22 +55,29 @@ function getPrivateKeyPromise() {
 }
 
 function writeTokens(tokens, inputData, outputPath) {  
-  var tokenList = []
+  var tokenList = [],
+      decodedTokenList = []
 
   tokens.map(function(token) {
     var decodedToken = tokenizer.decode(token)
-    var tokenRecord = {
-      encodedToken: token,
-      decodedToken: decodedToken
-    }
-    tokenList.push(tokenRecord)
+    tokenList.push(token)
+    decodedTokenList.push(decodedToken)
   })
 
-  var outputData = JSON.stringify(tokenList, null, 4)
+  var readableData = JSON.stringify(decodedTokenList, null, 4)
+  var tokenizedData = JSON.stringify(tokenList, null, 4)
 
-  fs.writeFile(outputPath, outputData, function(err) {
+  fs.writeFile(outputPath + '-decoded.json', readableData, function(err) {
     if (!err) {
-      console.log('user data for +' + inputData.username + ' written to ' + outputPath)
+      console.log('user data for +' + inputData.username + ' written to ' + outputPath + '-decoded.json')
+    } else {
+      console.log(err)
+    }
+  })
+
+  fs.writeFile(outputPath + '-encoded.json', tokenizedData, function(err) {
+    if (!err) {
+      console.log('user data for +' + inputData.username + ' written to ' + outputPath + '-encoded.json')
     } else {
       console.log(err)
     }
@@ -102,4 +109,4 @@ function main(outputDirectory, outputFilename) {
   })
 }
 
-main('users', 'statements.json')
+main('users', 'profile')

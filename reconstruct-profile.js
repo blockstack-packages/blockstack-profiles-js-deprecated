@@ -1,6 +1,6 @@
 var fs = require('fs')
 
-var filename = './users/ryan/statements.json'
+var filename = './users/ryan/profile-decoded.json'
 
 Object.merge = function(destination, source) {
     for (var property in source) {
@@ -29,9 +29,8 @@ fs.readFile(filename, 'utf8', function(err, data) {
         throw err
     }
     var profile = {}
-    var items = JSON.parse(data)
-    items.map(function(item) {
-        var token = item.decodedToken
+    var tokens = JSON.parse(data)
+    tokens.map(function(token) {
         var claim = token.payload.claim
         Object.merge(profile, claim)
     })
