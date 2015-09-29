@@ -22,7 +22,8 @@
   "author": "Halfmoon Labs, Inc.",
   "license": "MIT",
   "dependencies": {
-    "jwt-js": "^0.2.6"
+    "hasprop": "0.0.3",
+    "jwt-js": "^0.3.3"
   },
   "devDependencies": {
     "tape": "^4.2.0"
