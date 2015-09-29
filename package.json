@@ -1,19 +1,30 @@
 {
-  "name": "blockchain-id-generator",
+  "name": "blockchain-id",
   "version": "0.0.0",
-  "description": "blockchain ID generator",
+  "description": "Blockchain ID profile generator",
   "main": "index.js",
-  "dependencies": {
-    "jwt-js": "^0.2.4",
-    "mkdirp": "^0.5.1",
-    "prompt": "^0.2.14"
-  },
-  "devDependencies": {
-    "tape": "^4.2.0"
-  },
   "scripts": {
     "test": "node test.js"
   },
-  "author": "",
-  "license": "MIT"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blockstack/blockchain-id-js"
+  },
+  "keywords": [
+    "blockchain",
+    "id",
+    "blockchainid",
+    "profile",
+    "generate",
+    "generator",
+    "token"
+  ],
+  "author": "Halfmoon Labs, Inc.",
+  "license": "MIT",
+  "dependencies": {
+    "jwt-js": "^0.2.6"
+  },
+  "devDependencies": {
+    "tape": "^4.2.0"
+  }
 }
