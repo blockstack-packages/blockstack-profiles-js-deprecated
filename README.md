@@ -1,6 +1,10 @@
 # Blockchain ID JS
 
-A Blockchain ID Profile generator and parser
+A Blockchain ID Profile generator and parser that creates the following:
+
++ a zone file that describes how to load the token file and how to interpret it
++ a token file that contains signed tokens with profile data
++ a profile reconstructed from the token file
 
 ### Sample Zone File
 
@@ -172,7 +176,7 @@ A Blockchain ID Profile generator and parser
 }
 ```
 
-### Token File
+### Sample Token File
 
 ```json
 [
