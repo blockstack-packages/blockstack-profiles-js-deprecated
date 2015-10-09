@@ -4,7 +4,7 @@ When you regster a blockchain ID on the Bitcoin blockchain, you get a username a
 
 ### Usernames
 
-Let's say you register the username 'john' within the 'id' namespace, the default namespace for usernames. Then your username would be expressed as `john.id`.
+Let's say you register the username 'alice' within the 'id' namespace, the default namespace for usernames. Then your username would be expressed as `alice.id`.
 
 ### Profiles
 
@@ -46,28 +46,14 @@ The "publicKeychain" field indicates the keychain that was used to sign the toke
 
 ```json
 {
-    "origin": "ryan.id",
+    "origin": "alice.id",
     "ttl": "1h",
     "records": [
-        ...
     ]
 }
 ```
 
-### Profiles
-
-Profile schema is taken from schema.org. The schema for a person record can be found at http://schema.org/Person. There are some fields that have yet to be included, like the "account", "key", "policy", "id", and "publicKey" fields. An updated schema definition will be published to a different location that superclasses the schema.org Person definition and adds these fields.
-
-#### Example Profile
-
-```json
-{
-    "name": "Ryan Shea",
-    "givenName": "Ryan",
-    "familyName": "Shea",
-    ...
-}
-```
+[Full Zone File](/docs/zoneFile.md)
 
 ### Token Files
 
@@ -83,7 +69,26 @@ To validate each identity token, first decode the token and grab the public key 
 [
     {
         "token": "",
-        ...
+        "data": "",
+        "chainPath": "",
+        "encrypted": false
     }
 ]
 ```
+
+[Full Token File](/docs/tokenFile.md)
+
+### Profiles
+
+Profile schema is taken from schema.org. The schema for a person record can be found at http://schema.org/Person. There are some fields that have yet to be included, like the "account", "key", "policy", "id", and "publicKey" fields. An updated schema definition will be published to a different location that superclasses the schema.org Person definition and adds these fields.
+
+#### Example Profile
+
+```json
+{
+    "name": "Alice Smith",
+    "accounts": []
+}
+```
+
+[Full Profile](/docs/profile.md)
