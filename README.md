@@ -8,6 +8,19 @@ Let's say you register the username 'alice' within the 'id' namespace, the defau
 
 ### Profiles
 
+Profile schema is taken from schema.org. The schema for a person record can be found at http://schema.org/Person. There are some fields that have yet to be included, like the "account", "key", "policy", "id", and "publicKey" fields. An updated schema definition will be published to a different location that superclasses the schema.org Person definition and adds these fields.
+
+#### Example Profile
+
+```json
+{
+    "name": "Alice Smith",
+    "accounts": []
+}
+```
+
+[Full Profile](/docs/profile.md)
+
 Blockchain ID profiles are stored in two files:
 
 + a token file that contains signed tokens with profile data
@@ -77,18 +90,3 @@ To validate each identity token, first decode the token and grab the public key 
 ```
 
 [Full Token File](/docs/tokenFile.md)
-
-### Profiles
-
-Profile schema is taken from schema.org. The schema for a person record can be found at http://schema.org/Person. There are some fields that have yet to be included, like the "account", "key", "policy", "id", and "publicKey" fields. An updated schema definition will be published to a different location that superclasses the schema.org Person definition and adds these fields.
-
-#### Example Profile
-
-```json
-{
-    "name": "Alice Smith",
-    "accounts": []
-}
-```
-
-[Full Profile](/docs/profile.md)
