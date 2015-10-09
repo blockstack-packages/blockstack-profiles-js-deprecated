@@ -76,6 +76,14 @@ Each record contains the encoded token, a "data" field with the decoded token, a
 
 To validate each identity token, first decode the token and grab the public key of the issuer. Then, verify the token's signature with the public key. Then check to make sure you can derive the public key from the master public keychain using the chain path. If these checks pass, the token is valid.
 
+Each token in the token file has a header, a payload, and a signature. The payload is the important part. Each payload contains a "claim", a "subject", and an "issuer". The claim is the signed bit of information that goes into the construction of the profile. The subject references the identity that the claim is about. The issuer is the identity that is signing the token (and thus making a claim about the subject).
+
+In the case of self-attested profile information, the subject and the issuer are the same person (one is making a statement about one's self).
+
+However, this can be extended to any statement made by any issuer about any other subject. For example, you can sign a statement attesting to your own birth date, and then your state DMV or bank can sign a statement making the same attestation about your birth date. Then, you can present those two signed statements to any other party and present proof of your birth date.
+
+The cool part is that the identities referenced are public keys, not usernames. That means that you can present signed tokens to a party that show proof of your birth date, all without revealing your username and thus your identity. This process is known as selective disclosure of identity information.
+
 #### Example Token File
 
 ```json
