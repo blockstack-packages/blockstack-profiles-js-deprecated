@@ -39,7 +39,7 @@ An identity lookup is performed as follows:
 
 ### Zone Files
 
-A zone file contains an origin (the name registered), a TTL (not yet supported), and a list or records.
+A zone file contains an origin (the name registered), a TTL (not yet supported), and a list of records.
 
 Each record has a name, class, type, data, and checksums.
 
