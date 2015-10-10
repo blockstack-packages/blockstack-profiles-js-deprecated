@@ -15,16 +15,19 @@ Profile schema is taken from schema.org. The schema for a person record can be f
 ```json
 {
     "name": "Alice Smith",
-    "accounts": []
+    "accounts": [],
+    ...
 }
 ```
 
-[Full Profile](/docs/profile.md)
+[<img src="/docs/button-profile.png" width="200">](/docs/profile.md)
 
-Blockchain ID profiles are stored in two files:
+### Profile Storage
 
-+ a token file that contains signed tokens with profile data
-+ a zone file that describes where to find the token file
+Blockchain ID profiles are stored in two files: a token file and a zone file:
+
++ **token file** - contains signed tokens with profile data
++ **zone file** - describes where to find the token file
 
 ### Lookups
 
@@ -62,11 +65,12 @@ The "publicKeychain" field indicates the keychain that was used to sign the toke
     "origin": "alice.id",
     "ttl": "1h",
     "records": [
+        ...
     ]
 }
 ```
 
-[Full Zone File](/docs/zoneFile.md)
+[<img src="/docs/button-zone-file.png" width="200">](/docs/zone-file.md)
 
 ### Token Files
 
@@ -89,12 +93,15 @@ The cool part is that the identities referenced are public keys, not usernames. 
 ```json
 [
     {
-        "token": "",
-        "data": "",
-        "chainPath": "",
+        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJjbGFpbSI6eyJuYW1lIjoiUnlhbiBTaGVhIiwiZ2l2ZW5OYW1lIjoiUnlhbiIsImZhbWlseU5hbWUiOiJTaGVhIn0sInN1YmplY3QiOnsiQHR5cGUiOiJQZXJzb24iLCJwdWJsaWNLZXkiOiIwM2QzOWI2YzM5NzEwOWFmYTNhZTE4NDRiMjEzMjE1NmE0YmYyMzYxN2ZlOTEzMmYwZmFjYzM4Y2NmOTQ1MmVhODYifSwiaXNzdWVyIjp7IkB0eXBlIjoiUGVyc29uIiwicHVibGljS2V5IjoiMDNkMzliNmMzOTcxMDlhZmEzYWUxODQ0YjIxMzIxNTZhNGJmMjM2MTdmZTkxMzJmMGZhY2MzOGNjZjk0NTJlYTg2In19.Wqo7GlyisTMRm7xQz98XBp4y_QDTTEQwhtnnoBxsXODupYJlj758rMQEFom2mU5p-WzJwWY8leHgWhoyKa4mXA",
+        "data": {
+            ...
+        },
+        "chainPath": "9eace0988a7583d45c99ea0058b2687282ebbe4a2862c86aa0e2ed576cd1b49f",
         "encrypted": false
-    }
+    },
+    ...
 ]
 ```
 
-[Full Token File](/docs/tokenFile.md)
+[<img src="/docs/button-token-file.png" width="200">](/docs/token-file.md)
