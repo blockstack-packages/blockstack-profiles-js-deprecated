@@ -23,7 +23,7 @@ var privateKeychain = new PrivateKeychain(),
     publicKeychain = privateKeychain.publicKeychain()
 
 function writeFiles(zoneFile, tokenFile, profile) {
-    fs.writeFile('docs/zoneFile.md', '```json\n' + JSON.stringify(zoneFile, null, 4) + '\n```', function(err) {
+    fs.writeFile('docs/zone-file.md', '```json\n' + JSON.stringify(zoneFile, null, 4) + '\n```', function(err) {
         if (!err) {
             console.log('zone file written')
         } else {
@@ -31,7 +31,7 @@ function writeFiles(zoneFile, tokenFile, profile) {
         }
     })
 
-    fs.writeFile('docs/tokenFile.md', '```json\n' + JSON.stringify(tokenFile, null, 4) + '\n```', function(err) {
+    fs.writeFile('docs/token-file.md', '```json\n' + JSON.stringify(tokenFile, null, 4) + '\n```', function(err) {
         if (!err) {
             console.log('token file written')
         } else {
