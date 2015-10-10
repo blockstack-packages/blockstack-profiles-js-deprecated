@@ -1,8 +1,26 @@
 # Blockchain ID JS
 
-When you regster a blockchain ID on the Bitcoin blockchain, you get a username and a profile.
+[![CircleCI](https://img.shields.io/circleci/project/blockstack/blockchain-id-js.svg)](https://circleci.com/gh/blockstack/blockchain-id-js)
+[![npm](https://img.shields.io/npm/l/blockchainid.svg)](https://www.npmjs.com/package/blockchainid)
+[![Slack](http://slack.blockstack.org/badge.svg)](http://slack.blockstack.org/)
+
+[![](https://nodei.co/npm/blockchainid.png?downloads=true)](https://www.npmjs.com/package/blockchainid)
+
+## Contents
+
+* [Usernames](#usernames)
+* [Profiles](#profiles)
+    - [Example Profile](#example-profile) 
+* [Profile Storage](#profile-storage)
+* [Lookups](#lookups)
+* [Zone Files](#zone-files)
+    - [Example Zone File](#example-zone-file) 
+* [Token Files](#token-files)
+    - [Example Token File](#example-token-file)
 
 ### Usernames
+
+A blockchain ID = a name + a blockchain ID
 
 Let's say you register the username 'alice' within the 'id' namespace, the default namespace for usernames. Then your username would be expressed as `alice.id`.
 
@@ -15,8 +33,7 @@ Profile schema is taken from schema.org. The schema for a person record can be f
 ```json
 {
     "name": "Alice Smith",
-    "accounts": [],
-    ...
+    "accounts": []
 }
 ```
 
@@ -65,7 +82,6 @@ The "publicKeychain" field indicates the keychain that was used to sign the toke
     "origin": "alice.id",
     "ttl": "1h",
     "records": [
-        ...
     ]
 }
 ```
@@ -95,12 +111,10 @@ The cool part is that the identities referenced are public keys, not usernames. 
     {
         "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJjbGFpbSI6eyJuYW1lIjoiUnlhbiBTaGVhIiwiZ2l2ZW5OYW1lIjoiUnlhbiIsImZhbWlseU5hbWUiOiJTaGVhIn0sInN1YmplY3QiOnsiQHR5cGUiOiJQZXJzb24iLCJwdWJsaWNLZXkiOiIwM2QzOWI2YzM5NzEwOWFmYTNhZTE4NDRiMjEzMjE1NmE0YmYyMzYxN2ZlOTEzMmYwZmFjYzM4Y2NmOTQ1MmVhODYifSwiaXNzdWVyIjp7IkB0eXBlIjoiUGVyc29uIiwicHVibGljS2V5IjoiMDNkMzliNmMzOTcxMDlhZmEzYWUxODQ0YjIxMzIxNTZhNGJmMjM2MTdmZTkxMzJmMGZhY2MzOGNjZjk0NTJlYTg2In19.Wqo7GlyisTMRm7xQz98XBp4y_QDTTEQwhtnnoBxsXODupYJlj758rMQEFom2mU5p-WzJwWY8leHgWhoyKa4mXA",
         "data": {
-            ...
         },
         "chainPath": "9eace0988a7583d45c99ea0058b2687282ebbe4a2862c86aa0e2ed576cd1b49f",
         "encrypted": false
     },
-    ...
 ]
 ```
 
