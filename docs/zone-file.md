@@ -8,7 +8,7 @@
             "class": "IN",
             "type": "CNAME",
             "data": "https://s3.amazonaws.com/mq9/ryan.json",
-            "publicKeychain": "xpub661MyMwAqRbcFhRznqvSVhWGU8DCHp8mjAM2aYv84NZdK7e5xWj9VjCE2bp5GMsNoTBqRXXBEMa5KUZAEoXnWS9Dss1f8QouzwvuvgDhBMA",
+            "publicKeychain": "xpub661MyMwAqRbcGihYVzyeNKUXSxeTrsmW61yi8CxiJYXd9zAvADmjqbMXGeEKKUsGMLAFXDkidEFrG9rE2YwKLGQbGA21ARDku1WYg2Escy6",
             "checksums": [
                 {
                     "field": "pgp[0].publicKey",
