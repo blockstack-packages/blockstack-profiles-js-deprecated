@@ -1,5 +1,6 @@
 ```json
 {
+    "@type": "Person",
     "name": "Ryan Shea",
     "givenName": "Ryan",
     "familyName": "Shea",
@@ -51,7 +52,8 @@
         {
             "@type": "Account",
             "service": "instagram",
-            "identifier": "ryaneshea"
+            "identifier": "ryaneshea",
+            "proofType": "http"
         },
         {
             "@type": "Account",
@@ -71,7 +73,7 @@
         {
             "@type": "Account",
             "service": "openbazaar",
-            "role": "data",
+            "role": "storage",
             "data": {
                 "guid": "34e57db64ce7435ab0f759oca31386527c670bd1"
             }
