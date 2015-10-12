@@ -2,6 +2,7 @@
 
 [![CircleCI](https://img.shields.io/circleci/project/blockstack/blockchain-id-js.svg)](https://circleci.com/gh/blockstack/blockchain-id-js)
 [![npm](https://img.shields.io/npm/l/blockchainid.svg)](https://www.npmjs.com/package/blockchainid)
+[![npm](https://img.shields.io/npm/v/blockchainid.svg)](https://www.npmjs.com/package/blockchainid)
 [![Slack](http://slack.blockstack.org/badge.svg)](http://slack.blockstack.org/)
 
 [![](https://nodei.co/npm/blockchainid.png?downloads=true)](https://www.npmjs.com/package/blockchainid)

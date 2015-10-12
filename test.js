@@ -23,7 +23,8 @@ var privateKeychain = new PrivateKeychain(),
     publicKeychain = privateKeychain.publicKeychain()
 
 function writeFiles(zoneFile, tokenFile, profile) {
-    fs.writeFile('docs/zone-file.md', '```json\n' + JSON.stringify(zoneFile, null, 4) + '\n```', function(err) {
+    var zoneFileData = '```json\n' + JSON.stringify(zoneFile, null, 4) + '\n```'
+    fs.writeFile('docs/zone-file.md', zoneFileData, function(err) {
         if (!err) {
             console.log('zone file written')
         } else {
@@ -31,7 +32,8 @@ function writeFiles(zoneFile, tokenFile, profile) {
         }
     })
 
-    fs.writeFile('docs/token-file.md', '```json\n' + JSON.stringify(tokenFile, null, 4) + '\n```', function(err) {
+    var tokenFileData = '```json\n' + JSON.stringify(tokenFile, null, 4) + '\n```'
+    fs.writeFile('docs/token-file.md', tokenFileData, function(err) {
         if (!err) {
             console.log('token file written')
         } else {
@@ -39,7 +41,8 @@ function writeFiles(zoneFile, tokenFile, profile) {
         }
     })
 
-    fs.writeFile('docs/profile.md', '```json\n' + JSON.stringify(profile, null, 4) + '\n```', function(err) {
+    var profileFileData = '```json\n' + JSON.stringify(profile, null, 4) + '\n```'
+    fs.writeFile('docs/profile.md', profileFileData, function(err) {
         if (!err) {
             console.log('profile file written')
         } else {
