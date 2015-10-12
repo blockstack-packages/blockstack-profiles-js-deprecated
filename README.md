@@ -8,15 +8,23 @@
 
 ## Contents
 
-* [Usernames](#usernames)
-* [Profiles](#profiles)
-    - [Example Profile](#example-profile) 
-* [Profile Storage](#profile-storage)
-* [Lookups](#lookups)
-* [Zone Files](#zone-files)
-    - [Example Zone File](#example-zone-file) 
-* [Token Files](#token-files)
-    - [Example Token File](#example-token-file)
+* [Overview](#Overview)
+    * [Usernames](#usernames)
+    * [Profiles](#profiles)
+        - [Example Profile](#example-profile) 
+    * [Profile Storage](#profile-storage)
+    * [Lookups](#lookups)
+    * [Zone Files](#zone-files)
+        - [Example Zone File](#example-zone-file) 
+    * [Token Files](#token-files)
+        - [Example Token File](#example-token-file)
+* [Usage](#usage)
+    * [Create a Blockchain ID](#create-a-blockchain-id)
+    * [Create a Zone File](#create-a-zone-file)
+    * [Create a Token File](#create-a-token-file)
+    * [Recover a Profile](#recover-a-profile)
+
+## Overview
 
 ### Usernames
 
@@ -119,3 +127,63 @@ The cool part is that the identities referenced are public keys, not usernames. 
 ```
 
 [<img src="/docs/button-token-file.png" width="200">](/docs/token-file.md)
+
+
+## Usage
+
+```js
+var BlockchainID = require('blockchainid').BlockchainID,
+    PrivateKeychain = require('keychain-manager').PrivateKeychain,
+    PublicKeychain = require('keychain-manager').PublicKeychain
+
+var privateKeychain = new PrivateKeychain(),
+    publicKeychain = privateKeychain.publicKeychain()
+```
+
+### Create a Blockchain ID
+
+```js
+var profile = {
+    "@type": "Person",
+    "givenName": "Satoshi",
+    "familyName": "Nakamoto",
+    "knows": [
+        {
+            "@type": "Person",
+            "id": "gavinandresen.id"
+        }
+    ]
+}
+var blockchainID = new BlockchainID('satoshinakamoto.id', profile)
+```
+
+### Create a Zone File
+
+```js
+var zoneFile = blockchainID.zoneFile(publicKeychain, hostUrls, checksums)
+```
+
+### Create a Token File
+
+```js
+var tokenFile = blockchainID.signTokens(privateKeychain)
+```
+
+### Recover a Profile
+
+```js
+var loadedBlockchainID = BlockchainID.fromTokens('satoshinakamoto.id', tokenFile, publicKeychain)
+var profile = loadedBlockchainID.profile()
+console.log(profile)
+{
+    "@type": "Person",
+    "givenName": "Satoshi",
+    "familyName": "Nakamoto",
+    "knows": [
+        {
+            "@type": "Person",
+            "id": "gavinandresen.id"
+        }
+    ]
+}
+```
