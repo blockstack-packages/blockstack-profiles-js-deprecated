@@ -40,7 +40,7 @@ Profile schema is taken from schema.org. The schema for a person record can be f
 
 ```json
 {
-    "name": "Alice Smith",
+    "name": "Naval Ravikant",
     "accounts": []
 }
 ```
