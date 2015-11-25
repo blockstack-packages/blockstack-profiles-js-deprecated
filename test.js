@@ -54,7 +54,7 @@ function writeFiles(zoneFile, tokenFile, profile) {
 test('tokenizeProfile', function(t) {
     t.plan(2)
 
-    tokenRecords = signProfileTokens('ES256k', privateKeychain, profileDirectory.ryan_id)
+    tokenRecords = signProfileTokens('ES256k', privateKeychain, profileDirectory.naval_id)
     t.ok(tokenRecords, 'tokens should have been created')
 
     var tokensVerified = true
@@ -70,21 +70,20 @@ test('tokenizeProfile', function(t) {
 })
 
 test('reconstructProfile', function(t) {
-    t.plan(2)
+    t.plan(1)
 
     var profile = profileFormatting.tokensToV3Profile(tokenRecords, publicKeychain)
     t.ok(profile, 'profile should have been reconstructed')
-    t.equal(profile.name, 'Ryan Shea', 'profile name should match the reference')
     //console.log(profile)
 })
 
 test('blockchainID', function(t) {
     t.plan(6)
     
-    var blockchainID = BlockchainID.fromFlatProfile('ryan.id', profileDirectory.ryan_id)
+    var blockchainID = BlockchainID.fromFlatProfile('naval.id', profileDirectory.naval_id)
     t.ok(blockchainID, 'blockchain ID profile object should have been created')
 
-    var hostUrls = ['https://s3.amazonaws.com/mq9/ryan.json'],
+    var hostUrls = ['https://s3.amazonaws.com/mq9/naval.json'],
         checksums = [{ field: 'pgp[0].publicKey', hash: profileDirectory.pgpPublicKeyHash, algorithm: 'SHA256' }],
         zoneFile = blockchainID.zoneFile(publicKeychain, hostUrls, checksums)
     t.ok(zoneFile, 'zone file should have been created')
@@ -94,13 +93,13 @@ test('blockchainID', function(t) {
     t.ok(tokenFile, 'token file should have been created')
     //console.log(JSON.stringify(tokenFile, null, 4))
 
-    var profile = new BlockchainID.fromTokens('ryan', tokenRecords, publicKeychain).profile()
+    var profile = new BlockchainID.fromTokens('naval', tokenRecords, publicKeychain).profile()
     t.ok(profile, 'profile should have been constructed')
     //console.log(JSON.stringify(profile, null, 4))
 
-    var blockchainID2 = new BlockchainID('ryan.id', profile)
+    var blockchainID2 = new BlockchainID('naval.id', profile)
     t.ok(blockchainID, 'blockchain ID profile object should have been created')
-    t.equal(JSON.stringify(blockchainID2.flatProfile), JSON.stringify(profileDirectory.ryan_id), 'flat profile should be equal to the original')
+    t.equal(JSON.stringify(blockchainID2.flatProfile), JSON.stringify(profileDirectory.naval_id), 'flat profile should be equal to the original')
 
     writeFiles(zoneFile, tokenFile, profile)
 })
@@ -108,7 +107,7 @@ test('blockchainID', function(t) {
 test('fromV2Profile', function(t) {
     t.plan(2)
 
-    var blockchainID = BlockchainID.fromV2Profile('ryan.id', profileDirectory.ryan_v2)
+    var blockchainID = BlockchainID.fromV2Profile('naval.id', profileDirectory.naval_v2)
     t.ok(blockchainID, 'blockchain ID object should have been created')
 
     var profile = blockchainID.profile()

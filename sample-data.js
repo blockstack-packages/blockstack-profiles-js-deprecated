@@ -1,5 +1,81 @@
 var profileDirectory = {
     pgpPublicKeyHash: "e508f0c2c455ab79a4fabc4b51aa537e123c08abee40a87c47e6705a2bbae4ae",
+    naval_id: {
+      name: "Naval Ravikant",
+      givenName: "Naval",
+      familyName: "Ravikant",
+      description: "Co-founder of AngelList",
+      avatarImageUrl: "https://pbs.twimg.com/profile_images/3696617328/667874c5936764d93d56ccc76a2bcc13.jpeg",
+      backgroundImageUrl: "https://pbs.twimg.com/profile_banners/745273/1355705777/web_retina",
+      website: "angel.co",
+      facebookUsername: "navalr",
+      facebookProofUrl: "https://facebook.com/navalr/posts/10152190734077261",
+      twitterUsername: "naval",
+      twitterProofUrl: "https://twitter.com/naval/status/486609266212499456",
+      githubUsername: "navalr",
+      githubProofUrl: "https://gist.github.com/navalr/f31a74054f859ec0ac6a",
+      bitcoinAddress: "1919UrhYyhs471ps8CFcJ3DRpWSda8qtSk",
+      bitcoinProofMessage: "Verifying that +naval is my blockchain ID.",
+      bitcoinProofSignature: "ICuRA+Dq5Dn8AiY9P+mcLzGyibPgG0ec9CphtMk512uPdB5eAncDSHhQZY/7kycvl6PLFEuR+j3OM/K2Vey1+EU=",
+      appData: "openbazaar={\"guid\":\"34e57db64ce7435ab0f759oca31386527c670bd1\"}",
+      worksFor: "angellist.id",
+      knows: "muneeb.id, ryan.id",
+      streetAddress: "16 Maiden Ln",
+      addressLocality: "San Francisco, CA",
+      postalCode: "94108",
+      addressCountry: "United States",
+      birthDate: "1973-01-01",
+      taxID: "000-00-0000"
+    },
+    naval_v2: {
+      "twitter": {
+        "username": "naval", 
+        "proof": {
+          "url": "https://twitter.com/naval/status/486609266212499456"
+        }
+      }, 
+      "angellist": {
+        "username": "naval"
+      }, 
+      "bitcoin": {
+        "address": "1919UrhYyhs471ps8CFcJ3DRpWSda8qtSk"
+      }, 
+      "github": {
+        "username": "navalr", 
+        "proof": {
+          "url": "https://gist.github.com/navalr/f31a74054f859ec0ac6a"
+        }
+      }, 
+      "website": "https://angel.co/naval", 
+      "pgp": {
+        "url": "https://s3.amazonaws.com/pk9/naval", 
+        "fingerprint": "07354EDF5C6CF2572847840D8FA3F960B62B7C41"
+      }, 
+      "v": "0.2", 
+      "name": {
+        "formatted": "Naval Ravikant"
+      }, 
+      "twitterUsername": "naval", 
+      "graph": {
+        "url": "https://s3.amazonaws.com/grph/naval"
+      }, 
+      "cover": {
+        "url": "https://pbs.twimg.com/profile_banners/745273/1355705777/web_retina"
+      }, 
+      "avatar": {
+        "url": "https://pbs.twimg.com/profile_images/3696617328/667874c5936764d93d56ccc76a2bcc13.jpeg"
+      }, 
+      "bio": "Co-founder AngelList \u2022 Founder Epinions, Vast \u2022 Author Startupboy, Venture Hacks \u2022 Investor Twitter, Uber, Yammer, Postmates", 
+      "facebook": {
+        "username": "navalr", 
+        "proof": {
+          "url": "https://facebook.com/navalr/posts/10152190734077261"
+        }
+      }, 
+      "location": {
+        "formatted": "San Francisco, CA"
+      }
+    },
     ryan_id: {
         "name": "Ryan Shea",
         "givenName": "Ryan",

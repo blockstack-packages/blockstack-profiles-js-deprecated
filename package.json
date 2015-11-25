@@ -1,5 +1,5 @@
 {
-  "name": "blockchainid",
+  "name": "blockchain-profile",
   "version": "0.0.3",
   "description": "Blockchain ID profile generator",
   "main": "index.js",
