@@ -1,14 +1,14 @@
 ```json
 {
-    "origin": "naval.id",
+    "origin": "google.id",
     "ttl": "1h",
     "records": [
         {
             "name": "@",
             "class": "IN",
             "type": "CNAME",
-            "data": "https://s3.amazonaws.com/mq9/naval.json",
-            "publicKeychain": "xpub661MyMwAqRbcF5Y3dfYMHfvSNZ84zfkDxYP98VLMN9ZR4PvEAnU9421oFCYiCFWBveLZ7AA9y8CYkLpQkTjwmjepkXWGTrBJar3EYkzwV6K",
+            "data": "https://s3.amazonaws.com/mq9/google.id.json",
+            "publicKeychain": "xpub661MyMwAqRbcFdtoFLoQj4AvJZH82RiPqNMsBxdrrVyt6NfmPrcB1FKg52x2ozVVxdxgCamB9XrUJhC1W3ZGucKB1n7U7Dyg6GkshthKYij",
             "checksums": [
                 {
                     "field": "pgp[0].publicKey",

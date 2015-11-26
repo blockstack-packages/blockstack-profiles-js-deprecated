@@ -1,14 +1,14 @@
 {
   "name": "blockchain-profile",
-  "version": "0.0.3",
-  "description": "Blockchain ID profile generator",
+  "version": "0.1.0",
+  "description": "Blockchain ID Profile Generator",
   "main": "index.js",
   "scripts": {
     "test": "node test.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/blockstack/blockchain-id-js"
+    "url": "git+https://github.com/blockstack/blockchain-profile-js"
   },
   "keywords": [
     "blockchain",
@@ -20,15 +20,17 @@
     "generator",
     "token",
     "identity",
-    "blockchain identity"
+    "blockchain identity",
+    "blockchain profile"
   ],
   "author": "Halfmoon Labs, Inc.",
   "license": "MIT",
   "dependencies": {
     "elliptic-curve": "0.0.1",
     "hasprop": "0.0.3",
-    "jwt-js": "^0.4.3",
-    "keychain-manager": "^1.3.0"
+    "jwt-js": "^0.5.0",
+    "keychain-manager": "^1.3.0",
+    "merge-objects": "^1.0.5"
   },
   "devDependencies": {
     "tape": "^4.2.0"

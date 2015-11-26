@@ -8,6 +8,11 @@
 
 ## Contents
 
+* [Usage](#usage)
+    * [Create a Profile Object](#create-a-profile-object)
+    * [Create a Token File](#create-a-token-file)
+    * [Create a Zone File](#create-a-zone-file)
+    * [Reconstruct a Profile](#reconstruct-a-profile)
 * [Overview](#Overview)
     * [Usernames](#usernames)
     * [Profiles](#profiles)
@@ -18,11 +23,77 @@
         - [Example Zone File](#example-zone-file) 
     * [Token Files](#token-files)
         - [Example Token File](#example-token-file)
-* [Usage](#usage)
-    * [Create a Blockchain ID](#create-a-blockchain-id)
-    * [Create a Zone File](#create-a-zone-file)
-    * [Create a Token File](#create-a-token-file)
-    * [Recover a Profile](#recover-a-profile)
+
+## Usage
+
+Follow these steps to generate a profile for a Blockchain ID:
+
+1. Create a JSON profile object
+2. Convert the profile object into tokens
+3. Create a zone file that points to the web location of the profile object
+
+### Create a Profile Object
+
+The format for profile objects is based on the formatting found at schema.org.
+
+```js
+var profile = {
+    "@type": "Person",
+    "givenName": "Satoshi",
+    "familyName": "Nakamoto",
+    "knows": [
+        {
+            "@type": "Person",
+            "id": "gavinandresen.id"
+        }
+    ]
+}
+```
+
+### Create a Token File
+
+```js
+var BlockchainProfile = require('blockchain-profile').BlockchainProfile,
+    PrivateKeychain = require('keychain-manager').PrivateKeychain,
+    PublicKeychain = require('keychain-manager').PublicKeychain
+
+var privateKeychain = new PrivateKeychain(),
+    publicKeychain = privateKeychain.publicKeychain()
+```
+
+```js
+var tokenFile = BlockchainProfile.profileToTokens(profile, privateKeychain)
+```
+
+### Create a Zone File
+
+```js
+var hostUrls = ['https://s3.amazonaws.com/mq9/' + username + '.json']
+var checksums = [{
+    field: 'pgp[0].publicKey',
+    hash: 'e508f0c2c455ab79a4fabc4b51aa537e123c08abee40a87c47e6705a2bbae4ae',
+    algorithm: 'SHA256'
+}]
+var zoneFile = BlockchainProfile.zoneFile(username, publicKeychain, hostUrls, checksums)
+```
+
+### Reconstruct a Profile
+
+```js
+var profile = BlockchainProfile.tokensToProfile(tokenFile, publicKeychain)
+console.log(profile)
+{
+    "@type": "Person",
+    "givenName": "Satoshi",
+    "familyName": "Nakamoto",
+    "knows": [
+        {
+            "@type": "Person",
+            "id": "gavinandresen.id"
+        }
+    ]
+}
+```
 
 ## Overview
 
@@ -45,7 +116,7 @@ Profile schema is taken from schema.org. The schema for a person record can be f
 }
 ```
 
-[<img src="/docs/button-profile.png" width="200">](/docs/profile.md)
+[<img src="/docs/button-profile.png" width="200">](/docs/person/profile.md)
 
 ### Profile Storage
 
@@ -94,7 +165,7 @@ The "publicKeychain" field indicates the keychain that was used to sign the toke
 }
 ```
 
-[<img src="/docs/button-zone-file.png" width="200">](/docs/zone-file.md)
+[<img src="/docs/button-zone-file.png" width="200">](/docs/person/zone-file.md)
 
 ### Token Files
 
@@ -126,64 +197,5 @@ The cool part is that the identities referenced are public keys, not usernames. 
 ]
 ```
 
-[<img src="/docs/button-token-file.png" width="200">](/docs/token-file.md)
+[<img src="/docs/button-token-file.png" width="200">](/docs/person/token-file.md)
 
-
-## Usage
-
-```js
-var BlockchainID = require('blockchainid').BlockchainID,
-    PrivateKeychain = require('keychain-manager').PrivateKeychain,
-    PublicKeychain = require('keychain-manager').PublicKeychain
-
-var privateKeychain = new PrivateKeychain(),
-    publicKeychain = privateKeychain.publicKeychain()
-```
-
-### Create a Blockchain ID
-
-```js
-var profile = {
-    "@type": "Person",
-    "givenName": "Satoshi",
-    "familyName": "Nakamoto",
-    "knows": [
-        {
-            "@type": "Person",
-            "id": "gavinandresen.id"
-        }
-    ]
-}
-var blockchainID = new BlockchainID('satoshinakamoto.id', profile)
-```
-
-### Create a Zone File
-
-```js
-var zoneFile = blockchainID.zoneFile(publicKeychain, hostUrls, checksums)
-```
-
-### Create a Token File
-
-```js
-var tokenFile = blockchainID.signTokens(privateKeychain)
-```
-
-### Recover a Profile
-
-```js
-var loadedBlockchainID = BlockchainID.fromTokens('satoshinakamoto.id', tokenFile, publicKeychain)
-var profile = loadedBlockchainID.profile()
-console.log(profile)
-{
-    "@type": "Person",
-    "givenName": "Satoshi",
-    "familyName": "Nakamoto",
-    "knows": [
-        {
-            "@type": "Person",
-            "id": "gavinandresen.id"
-        }
-    ]
-}
-```

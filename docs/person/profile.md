@@ -81,14 +81,12 @@
     ],
     "birthDate": "1973-01-01",
     "taxID": "000-00-0000",
-    "address": [
-        {
-            "@type": "PostalAddress",
-            "streetAddress": "16 Maiden Ln",
-            "addressLocality": "San Francisco, CA",
-            "postalCode": "94108",
-            "addressCountry": "United States"
-        }
-    ]
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "16 Maiden Ln",
+        "addressLocality": "San Francisco, CA",
+        "postalCode": "94108",
+        "addressCountry": "United States"
+    }
 }
 ```
