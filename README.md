@@ -32,6 +32,13 @@ Follow these steps to generate a profile for a Blockchain ID:
 2. Convert the profile object into tokens
 3. Create a zone file that points to the web location of the profile object
 
+But first, import the required modules:
+
+```js
+var BlockchainProfile = require('blockchain-profile').BlockchainProfile,
+    PrivateKeychain = require('keychain-manager').PrivateKeychain
+```
+
 ### Create a Profile Object
 
 The format for profile objects is based on the formatting found at schema.org.
@@ -53,28 +60,17 @@ var profile = {
 ### Create a Token File
 
 ```js
-var BlockchainProfile = require('blockchain-profile').BlockchainProfile,
-    PrivateKeychain = require('keychain-manager').PrivateKeychain,
-    PublicKeychain = require('keychain-manager').PublicKeychain
-
-var privateKeychain = new PrivateKeychain(),
-    publicKeychain = privateKeychain.publicKeychain()
-```
-
-```js
+var privateKeychain = new PrivateKeychain()
 var tokenFile = BlockchainProfile.profileToTokens(profile, privateKeychain)
 ```
 
 ### Create a Zone File
 
 ```js
-var hostUrls = ['https://s3.amazonaws.com/mq9/' + username + '.json']
-var checksums = [{
-    field: 'pgp[0].publicKey',
-    hash: 'e508f0c2c455ab79a4fabc4b51aa537e123c08abee40a87c47e6705a2bbae4ae',
-    algorithm: 'SHA256'
-}]
-var zoneFile = BlockchainProfile.zoneFile(username, publicKeychain, hostUrls, checksums)
+var publicKeychain = privateKeychain.publicKeychain()
+var hostUrls = ['https://s3.amazonaws.com/mq9/users/satoshi-nakamoto.json']
+var checksums = [{ field: 'pgp[0].publicKey', hash: 'e508f0c2c455ab79a4fabc4b51aa537e123c08abee40a87c47e6705a2bbae4ae', algorithm: 'SHA256' }]
+var zoneFile = BlockchainProfile.zoneFile('satoshi.id', publicKeychain, hostUrls, checksums)
 ```
 
 ### Reconstruct a Profile
