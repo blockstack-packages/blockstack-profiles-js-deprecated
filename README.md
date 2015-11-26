@@ -1,9 +1,9 @@
 # Blockchain Profile JS
 
-[![CircleCI](https://img.shields.io/circleci/project/blockstack/blockchain-id-js.svg)](https://circleci.com/gh/blockstack/blockchain-id-js)
-[![npm](https://img.shields.io/npm/l/blockchainid.svg)](https://www.npmjs.com/package/blockchainid)
-[![npm](https://img.shields.io/npm/v/blockchainid.svg)](https://www.npmjs.com/package/blockchainid)
-[![npm](https://img.shields.io/npm/dm/blockchainid.svg)](https://www.npmjs.com/package/blockchainid)
+[![CircleCI](https://img.shields.io/circleci/project/blockstack/blockchain-profile-js.svg)](https://circleci.com/gh/blockstack/blockchain-profile-js)
+[![npm](https://img.shields.io/npm/l/blockchain-profile.svg)](https://www.npmjs.com/package/blockchain-profile)
+[![npm](https://img.shields.io/npm/v/blockchain-profile.svg)](https://www.npmjs.com/package/blockchain-profile)
+[![npm](https://img.shields.io/npm/dm/blockchain-profile.svg)](https://www.npmjs.com/package/blockchain-profile)
 [![Slack](http://slack.blockstack.org/badge.svg)](http://slack.blockstack.org/)
 
 ## Contents
