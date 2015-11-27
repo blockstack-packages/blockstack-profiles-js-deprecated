@@ -229,16 +229,13 @@ function testPersonProfile() {
         person.setAddress('New York, NY', 'United States')
         t.ok(person.profile.address, 'address should have been set')
         t.equal(person.profile.address.addressLocality, 'New York, NY', 'address locality should have been properly set')
-        console.log(JSON.stringify(person.profile, null, 2))
     })
 }
 
-/*
 testTokening(profileDirectory.naval_profile)
 testTokening(profileDirectory.google_id)
 testFlattening()
 testFileCreation('person', 'naval.id', profileDirectory.naval_profile)
 testFileCreation('organization', 'google.id', profileDirectory.google_id)
 testLegacyFormat()
-*/
 testPersonProfile()
