@@ -9,10 +9,15 @@ var TokenSigner = require('jwt-js').TokenSigner,
     PrivateKeychain = require('keychain-manager').PrivateKeychain,
     PublicKeychain = require('keychain-manager').PublicKeychain
 
-var profileDirectory = require('./sample-data'),
-    BlockchainProfile = require('./index').BlockchainProfile,
-    Person = require('./index').Person,
-    Organization = require('./index').Organization
+var profileDirectory = require('./sample-data')
+
+var Person = require('./index').Person,
+    Organization = require('./index').Organization,
+    createZoneFile = require('./index').createZoneFile,
+    signProfileTokens = require('./index').signProfileTokens,
+    getProfileFromTokens = require('./index').getProfileFromTokens,
+    flattenObject = require('./index').flattenObject,
+    unflattenObject = require('./index').unflattenObject
 
 function writeDocFile(filename, data) {
     var fileData = '```json\n' + JSON.stringify(data, null, 4) + '\n```'
@@ -39,7 +44,7 @@ function testTokening(profile) {
     test('profileToTokens', function(t) {
         t.plan(2)
 
-        tokenRecords = BlockchainProfile.profileToTokens(profile, privateKeychain)
+        tokenRecords = signProfileTokens(profile, privateKeychain)
         t.ok(tokenRecords, 'tokens should have been created')
 
         var tokensVerified = true
@@ -58,7 +63,7 @@ function testTokening(profile) {
     test('tokensToProfile', function(t) {
         t.plan(2)
 
-        var recoveredProfile = BlockchainProfile.tokensToProfile(tokenRecords, publicKeychain)
+        var recoveredProfile = getProfileFromTokens(tokenRecords, publicKeychain)
         //console.log(recoveredProfile)
         t.ok(recoveredProfile, 'profile should have been reconstructed')
         t.equal(JSON.stringify(recoveredProfile), JSON.stringify(profile), 'profile should equal the reference')
@@ -71,19 +76,23 @@ function testFlattening() {
         flatObject
 
     test('profileToFlatObject', function(t) {
-        t.plan(3)
+        t.plan(4)
 
-        flatObject = BlockchainProfile.profileToFlatObject(profile)
+        flatObject = flattenObject(profile)
         t.ok(flatObject, 'flat object should have been created')
         t.equal(flatObject.name, profile.name, 'flat object should have the same name as the profile')
         t.equal(flatObject['address.postalCode'], profile.address.postalCode, 'flat object postal code should match that of the profile')
+
+        var expandedProfile = unflattenObject(flatObject)
+        t.equal(JSON.stringify(expandedProfile), JSON.stringify(profile), 'unflattened object should match the profile')
     })
 
     test('flatObjectToProfile', function(t) {
-        t.plan(1)
+        t.plan(2)
 
-        var expandedProfile = BlockchainProfile.flatObjectToProfile(flatObject)
-        t.equal(JSON.stringify(expandedProfile), JSON.stringify(profile), 'unflattened object should match the profile')
+        var expandedProfile = unflattenObject(profileDirectory.ryan_flat)
+        t.ok(expandedProfile, 'profile should have been expanded')
+        t.equal(expandedProfile.account.length, 1, 'expanded profile should have 1 account')
     })
 }
 
@@ -99,7 +108,7 @@ function testFileCreation(objectType, username, profile) {
             hash: profileDirectory.pgpPublicKeyHash,
             algorithm: 'SHA256'
         }]
-        zoneFile = BlockchainProfile.zoneFile(username, publicKeychain, hostUrls, checksums)
+        zoneFile = createZoneFile(username, publicKeychain, hostUrls, checksums)
         t.ok(zoneFile, 'zone file should have been created')
         //console.log(JSON.stringify(zoneFile, null, 4))
 
@@ -109,7 +118,7 @@ function testFileCreation(objectType, username, profile) {
     test('createTokenFile', function(t) {
         t.plan(1)
 
-        tokenFile = BlockchainProfile.profileToTokens(profile, privateKeychain)
+        tokenFile = signProfileTokens(profile, privateKeychain)
         t.ok(tokenFile, 'token file should have been created')
         //console.log(JSON.stringify(tokenRecords, null, 4))
 
@@ -119,7 +128,7 @@ function testFileCreation(objectType, username, profile) {
     test('reconstructProfile', function(t) {
         t.plan(1)
 
-        profile = BlockchainProfile.tokensToProfile(tokenFile, publicKeychain)
+        profile = getProfileFromTokens(tokenFile, publicKeychain)
         t.ok(profile, 'profile should have been constructed')
         //console.log(JSON.stringify(profile, null, 4))
 
@@ -231,6 +240,21 @@ function testPersonProfile() {
         t.ok(person.profile.address, 'address should have been set')
         t.equal(person.profile.address.addressLocality, 'New York, NY', 'address locality should have been properly set')
     })
+
+    test('fromLegacyFormat', function(t) {
+        t.plan(1)
+        var person = Person.fromLegacyFormat(profileDirectory.ryan_v2)
+        t.ok(person.profile, 'person profile should have been created')
+        console.log(person.profile)
+    })
+
+    test('fromFlatObject', function(t) {
+        t.plan(1)
+        var person = Person.fromFlatObject(profileDirectory.ryan_flat)
+        t.ok(person.profile, 'person profile should have been created')
+        console.log(person.profile)
+    })
+
 }
 
 function testOrganizationProfile() {
@@ -282,6 +306,7 @@ function testOrganizationProfile() {
         t.equal(organization.profile.employee.length, 2, 'there should be 2 employees')
     })
 }
+
 
 testTokening(profileDirectory.naval_profile)
 testTokening(profileDirectory.google_id)

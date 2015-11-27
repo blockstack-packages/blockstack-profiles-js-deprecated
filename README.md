@@ -44,7 +44,11 @@ var BlockchainProfile = require('blockchain-profile').BlockchainProfile,
 The format for profile objects is based on the formatting found at schema.org.
 
 ```js
-var profile = {
+var person = new Person()
+person.setName("Satoshi", "Nakamoto")
+person.setFriend("gavinandresen.id")
+console.log(person.profile)
+{
     "@type": "Person",
     "givenName": "Satoshi",
     "familyName": "Nakamoto",
@@ -61,7 +65,7 @@ var profile = {
 
 ```js
 var privateKeychain = new PrivateKeychain()
-var tokenFile = BlockchainProfile.profileToTokens(profile, privateKeychain)
+var tokenFile = signProfileTokens(profile, privateKeychain)
 ```
 
 ### Create a Zone File
@@ -70,13 +74,13 @@ var tokenFile = BlockchainProfile.profileToTokens(profile, privateKeychain)
 var publicKeychain = privateKeychain.publicKeychain()
 var hostUrls = ['https://s3.amazonaws.com/mq9/users/satoshi-nakamoto.json']
 var checksums = [{ field: 'pgp[0].publicKey', hash: 'e508f0c2c455ab79a4fabc4b51aa537e123c08abee40a87c47e6705a2bbae4ae', algorithm: 'SHA256' }]
-var zoneFile = BlockchainProfile.zoneFile('satoshi.id', publicKeychain, hostUrls, checksums)
+var zoneFile = createZoneFile('satoshi.id', publicKeychain, hostUrls, checksums)
 ```
 
 ### Reconstruct a Profile
 
 ```js
-var profile = BlockchainProfile.tokensToProfile(tokenFile, publicKeychain)
+var profile = getProfileFromTokens(tokenFile, publicKeychain)
 console.log(profile)
 {
     "@type": "Person",

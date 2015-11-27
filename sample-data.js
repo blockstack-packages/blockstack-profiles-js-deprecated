@@ -235,6 +235,20 @@ var profileDirectory = {
         "birthDate": "1990-01-01",
         "taxID": "000-00-0000"
     },
+    ryan_flat: {
+      "name": "Ryan Shea",
+      "givenName": "Ryan",
+      "familyName": "Shea",
+      "description": "Co-founder of Onename",
+      "image[0].@type": "ImageObject",
+      "image[0].name": "avatar",
+      "image[0].contentUrl": "https://pbs.twimg.com/profile_images/3696617328/667874c5936764d93d56ccc76a2bcc13.jpeg",
+      "account[0].@type": "Account",
+      "account[0].service": "facebook",
+      "account[0].identifier": "navalr",
+      "account[0].proofType": "http",
+      "account[0].proofUrl": "https://facebook.com/navalr/posts/10152190734077261"
+    },
     ryan_v2: {
       "github": {
         "username": "shea256", 

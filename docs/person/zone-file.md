@@ -8,7 +8,7 @@
             "class": "IN",
             "type": "CNAME",
             "data": "https://s3.amazonaws.com/mq9/naval.id.json",
-            "publicKeychain": "xpub661MyMwAqRbcFBEUkeM58aaSk6HTodA2beE2aKZxEhBeDFHmp6PzNTLUubmU2pTFy7UA6obyvkDrFnvmoGLpx2w5s3SRscdyaFceJWd8Cpp",
+            "publicKeychain": "xpub661MyMwAqRbcFYxHdiAYyEdxZoNdmVDJAUiYJPwW65hK8akf5sox8zGx9oq5CUbCytVRCmUqn56ijg29QqFq9gtnjuLnm5hY5KftVnoehDZ",
             "checksums": [
                 {
                     "field": "pgp[0].publicKey",

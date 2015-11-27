@@ -1,6 +1,6 @@
 {
   "name": "blockchain-profile",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Blockchain ID Profile Generator",
   "main": "index.js",
   "scripts": {
