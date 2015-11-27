@@ -138,9 +138,54 @@ function testLegacyFormat() {
     })
 }
 
+function testPersonProfile() {
+    var person
+
+    test('createPerson', function(t) {
+        t.plan(2)
+        person = new Person()
+        t.ok(person, 'person should have been created')
+        t.ok(person.profile, 'profile should have been created')
+    })
+
+    test('setName', function(t) {
+        t.plan(1)
+        person.setName('Ryan', 'Shea')
+        t.equal(person.profile.name, 'Ryan Shea', 'profile name should have been properly set')
+    })
+
+    test('setSocialAccounts', function(t) {
+        t.plan(5)
+
+        var facebookProofUrl = 'https://facebook.com/ryaneshea/posts/10153086767027713',
+            twitterProofUrl = 'https://twitter.com/ryaneshea/status/597815798850269184'
+
+        person.setSocialAccount('twitter', 'ryaneshea')
+        person.setSocialAccount('facebook', 'ryaneshea')
+        person.setSocialAccount('github', 'shea256')
+        person.setSocialAccount('facebook', 'ryaneshea', facebookProofUrl)
+        person.setSocialAccount('twitter', 'ryaneshea', twitterProofUrl)
+
+        t.equal(person.profile.account.length, 3, 'there should be three accounts')
+        t.equal(person.profile.account[0].service, 'twitter', 'twitter account should have been set')
+        t.equal(person.profile.account[0].proofUrl, twitterProofUrl, 'twitter proof url should have been set')
+        t.equal(person.profile.account[1].service, 'facebook', 'facebook account should have been set')
+        t.equal(person.profile.account[1].proofUrl, facebookProofUrl, 'facebook proof url should have been set')
+    })
+
+    test('setImage', function(t) {
+        t.plan(1)
+        person.setImage('avatar', 'https://s3.amazonaws.com/kd4/ryan')
+        t.equal(person.profile.image[0].name, 'avatar', 'image name should have been properly set')
+
+        //console.log(person.profile)
+    })
+}
+
 testTokening(profileDirectory.naval_profile)
 testTokening(profileDirectory.google_id)
 testFlattening()
 testFileCreation('person', 'naval.id', profileDirectory.naval_profile)
 testFileCreation('organization', 'google.id', profileDirectory.google_id)
 testLegacyFormat()
+testPersonProfile()
