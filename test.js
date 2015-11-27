@@ -154,7 +154,19 @@ function testPersonProfile() {
         t.equal(person.profile.name, 'Ryan Shea', 'profile name should have been properly set')
     })
 
-    test('setSocialAccounts', function(t) {
+    test('setDescription', function(t) {
+        t.plan(1)
+        person.setDescription('Co-founder of Onename')
+        t.ok(person.profile.description, 'description should have been set')
+    })
+
+    test('setImage', function(t) {
+        t.plan(1)
+        person.setImage('avatar', 'https://s3.amazonaws.com/kd4/ryan')
+        t.equal(person.profile.image[0].name, 'avatar', 'image name should have been properly set')
+    })
+
+    test('setSocialAccount', function(t) {
         t.plan(5)
 
         var facebookProofUrl = 'https://facebook.com/ryaneshea/posts/10153086767027713',
@@ -166,26 +178,67 @@ function testPersonProfile() {
         person.setSocialAccount('facebook', 'ryaneshea', facebookProofUrl)
         person.setSocialAccount('twitter', 'ryaneshea', twitterProofUrl)
 
-        t.equal(person.profile.account.length, 3, 'there should be three accounts')
+        t.equal(person.profile.account.length, 3, 'there should be 3 accounts')
         t.equal(person.profile.account[0].service, 'twitter', 'twitter account should have been set')
         t.equal(person.profile.account[0].proofUrl, twitterProofUrl, 'twitter proof url should have been set')
         t.equal(person.profile.account[1].service, 'facebook', 'facebook account should have been set')
         t.equal(person.profile.account[1].proofUrl, facebookProofUrl, 'facebook proof url should have been set')
     })
 
-    test('setImage', function(t) {
-        t.plan(1)
-        person.setImage('avatar', 'https://s3.amazonaws.com/kd4/ryan')
-        t.equal(person.profile.image[0].name, 'avatar', 'image name should have been properly set')
+    test('setBitcoinAddress', function(t) {
+        t.plan(3)
+        var bitcoinAddress = '14zHpYa8Y1JPVvw1hoC9SqpqHjwu8PC53P',
+            proofMessage = 'Verifying that +ryan is my blockchain ID.',
+            proofSignature = 'ICuRA+Dq5Dn8AiY9P+mcLzGyibPgG0ec9CphtMk512uPdB5eAncDSHhQZY/7kycvl6PLFEuR+j3OM/K2Vey1+EU='
+        person.setBitcoinAddress(bitcoinAddress)
+        person.setBitcoinAddress(bitcoinAddress, proofMessage, proofSignature)
+        t.equal(person.profile.account.length, 4, 'there should be 4 accounts')
+        t.equal(person.profile.account[3].identifier, bitcoinAddress, 'bitcoin address should have been set')
+        t.equal(person.profile.account[3].proofMessage, proofMessage, 'proof message should have been set')
+    })
 
-        //console.log(person.profile)
+    test('setAppRecord', function(t) {
+        t.plan(2)
+        person.setAppRecord('openbazaar', {'guid': '34e57db64ce7435ab0f759oca31386527c670bd1'})
+        t.equal(person.profile.account.length, 5, 'there should be 5 accounts')
+        t.ok(person.profile.account[4])
+    })
+
+    test('setWebsite', function(t) {
+        t.plan(1)
+        person.setWebsite('shea.io')
+        t.ok(person.profile.website, 'website should have been set')
+    })
+
+    test('setEmployer', function(t) {
+        t.plan(1)
+        person.setEmployer('onename.id')
+        person.setEmployer('blockstack.id')
+        t.equal(person.profile.worksFor.length, 2, 'there should be two employers')
+    })
+
+    test('setFriend', function(t) {
+        t.plan(1)
+        person.setFriend('muneeb.id')
+        person.setFriend('naval.id')
+        t.equal(person.profile.knows.length, 2, 'there should be two friends')
+    })
+
+    test('setAddress', function(t) {
+        t.plan(2)
+        person.setAddress('New York, NY', 'United States')
+        t.ok(person.profile.address, 'address should have been set')
+        t.equal(person.profile.address.addressLocality, 'New York, NY', 'address locality should have been properly set')
+        console.log(JSON.stringify(person.profile, null, 2))
     })
 }
 
+/*
 testTokening(profileDirectory.naval_profile)
 testTokening(profileDirectory.google_id)
 testFlattening()
 testFileCreation('person', 'naval.id', profileDirectory.naval_profile)
 testFileCreation('organization', 'google.id', profileDirectory.google_id)
 testLegacyFormat()
+*/
 testPersonProfile()

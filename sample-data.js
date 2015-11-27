@@ -13,11 +13,13 @@ var profileDirectory = {
       "founder": [
         {
           "@type": "Person",
-          "name": "Larry Page"
+          "name": "Larry Page",
+          "id": "larrypage.id"
         },
         {
           "@type": "Person",
-          "name": "Sergey Brin"
+          "name": "Sergey Brin",
+          "id": "sergeybrin.id"
         }
       ],
       "name": "Google",
