@@ -2,14 +2,16 @@
 {
     "@context": "http://schema.org",
     "@type": "Organization",
+    "name": "Google",
+    "legalName": "Google Inc.",
+    "email": "hello@google.org",
     "address": {
         "@type": "PostalAddress",
         "addressLocality": "Mountain View, CA",
         "postalCode": "94043",
         "streetAddress": "1600 Amphitheatre Parkway"
     },
-    "email": "hello@google.org",
-    "founder": [
+    "employee": [
         {
             "@type": "Person",
             "name": "Larry Page",
@@ -21,12 +23,17 @@
             "id": "sergeybrin.id"
         }
     ],
-    "name": "Google",
-    "legalName": "Google Inc.",
-    "logo": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+    "image": [
+        {
+            "@type": "ImageObject",
+            "name": "logo",
+            "contentUrl": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
+        }
+    ],
     "parentOrganization": {
         "@type": "Organization",
-        "name": "Alphabet Inc."
+        "name": "Alphabet Inc.",
+        "id": "alphabet.id"
     }
 }
 ```

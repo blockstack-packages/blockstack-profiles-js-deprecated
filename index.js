@@ -2,6 +2,7 @@
 
 module.exports = {
     BlockchainProfile: require('./lib/profile'),
-    createZoneFile: require('./lib/zonefile'),
-    Person: require('./lib/schemas/person')
+    Person: require('./lib/schemas/person'),
+    Organization: require('./lib/schemas/organization'),
+    createZoneFile: require('./lib/zonefile')
 }

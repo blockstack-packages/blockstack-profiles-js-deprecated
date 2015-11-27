@@ -11,7 +11,8 @@ var TokenSigner = require('jwt-js').TokenSigner,
 
 var profileDirectory = require('./sample-data'),
     BlockchainProfile = require('./index').BlockchainProfile,
-    Person = require('./lib/schemas/person')
+    Person = require('./index').Person,
+    Organization = require('./index').Organization
 
 function writeDocFile(filename, data) {
     var fileData = '```json\n' + JSON.stringify(data, null, 4) + '\n```'
@@ -132,8 +133,8 @@ function testLegacyFormat() {
     test('legacyFormat', function(t) {
         t.plan(1)
 
-        var profile = Person.convertFromLegacyFormat(v2Profile)
-        t.ok(profile, 'profile should have been converted')
+        var person = Person.fromLegacyFormat(v2Profile)
+        t.ok(person.profile, 'profile should have been converted')
         //console.log(profile)
     })
 }
@@ -214,21 +215,71 @@ function testPersonProfile() {
         t.plan(1)
         person.setEmployer('onename.id')
         person.setEmployer('blockstack.id')
-        t.equal(person.profile.worksFor.length, 2, 'there should be two employers')
+        t.equal(person.profile.worksFor.length, 2, 'there should be 2 employers')
     })
 
     test('setFriend', function(t) {
         t.plan(1)
         person.setFriend('muneeb.id')
         person.setFriend('naval.id')
-        t.equal(person.profile.knows.length, 2, 'there should be two friends')
+        t.equal(person.profile.knows.length, 2, 'there should be 2 friends')
     })
 
     test('setAddress', function(t) {
         t.plan(2)
-        person.setAddress('New York, NY', 'United States')
+        person.setAddress('United States', 'New York, NY')
         t.ok(person.profile.address, 'address should have been set')
         t.equal(person.profile.address.addressLocality, 'New York, NY', 'address locality should have been properly set')
+    })
+}
+
+function testOrganizationProfile() {
+    var organization
+
+    test('createOrganization', function(t) {
+        t.plan(2)
+        organization = new Organization()
+        t.ok(organization, 'organization should have been created')
+        t.ok(organization.profile, 'profile should have been created')
+    })
+
+    test('setName', function(t) {
+        t.plan(1)
+        organization.setName('Google', 'Google Inc.')
+        t.equal(organization.profile.name, 'Google', 'profile name should have been properly set')
+    })
+
+    test('setDescription', function(t) {
+        t.plan(1)
+        organization.setDescription('An American multinational technology company specializing in Internet-related services and products.')
+        t.ok(organization.profile.description, 'description should have been set')
+    })
+
+    test('setImage', function(t) {
+        t.plan(1)
+        organization.setImage('logo', 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png')
+        t.equal(organization.profile.image[0].name, 'logo', 'image name should have been properly set')
+    })
+
+    test('setEmail', function(t) {
+        t.plan(1)
+        organization.setEmail('hello@google.com')
+        t.equal(organization.profile.email, 'hello@google.com', 'email should have been set')
+    })
+
+    test('setAddress', function(t) {
+        t.plan(2)
+        organization.setAddress('United States', 'Mountain View, CA', '1600 Amphitheatre Parkway', '94043')
+        t.ok(organization.profile.address, 'address should have been set')
+        t.equal(organization.profile.address.addressLocality, 'Mountain View, CA', 'address locality should have been properly set')
+    })
+
+    test('setEmployee', function(t) {
+        t.plan(2)
+        organization.setEmployee('larrypage.id')
+        organization.setEmployee('sergeybrin.id')
+        t.ok(organization.profile.employee, 'employee list should have been created')
+        t.equal(organization.profile.employee.length, 2, 'there should be 2 employees')
     })
 }
 
@@ -239,3 +290,4 @@ testFileCreation('person', 'naval.id', profileDirectory.naval_profile)
 testFileCreation('organization', 'google.id', profileDirectory.google_id)
 testLegacyFormat()
 testPersonProfile()
+testOrganizationProfile()
