@@ -95,7 +95,7 @@ console.log(profile)
 
 ### Usernames
 
-A blockchain ID = a name + a blockchain ID
+A blockchain ID = a name + a profile, registered on a blockchain.
 
 Let's say you register the username 'alice' within the 'id' namespace, the default namespace for usernames. Then your username would be expressed as `alice.id`.
 
