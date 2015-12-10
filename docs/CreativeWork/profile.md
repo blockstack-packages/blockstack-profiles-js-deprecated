@@ -1,0 +1,15 @@
+```json
+{
+    "@type": "CreativeWork",
+    "name": "Balloon Dog",
+    "creator": [
+        {
+            "@type": "Person",
+            "name": "Jeff Koons",
+            "id": "therealjeffkoons.id"
+        }
+    ],
+    "dateCreated": "1994-05-09T00:00:00-0400",
+    "datePublished": "2015-12-10T14:44:26-0500"
+}
+```
