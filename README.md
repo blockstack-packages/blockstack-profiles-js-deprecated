@@ -11,7 +11,7 @@
 * [Types](#types)
     * [Person](#person)
     * [Organization](#organization)
-    * [CreativeWork](#creativework)
+    * [CreativeWork](#creative-work)
 * [Registration](#registration)
     * [Create a Profile Object](#create-a-profile-object)
     * [Create a Token File](#create-a-token-file)
@@ -35,16 +35,57 @@
 ```js
 var person = new Person()
 person.setName("Naval", "Ravikant")
+person.setDescription("Co-founder of AngelList")
+person.setImage("avatar", "https://pbs.twimg.com/profile_images/3696617328/667874c5936764d93d56ccc76a2bcc13.jpeg")
+person.setSocialAccount("facebook", "navalr", "https://facebook.com/navalr/posts/10152190734077261")
+person.setSocialAccount("twitter", "naval", "https://twitter.com/naval/status/486609266212499456")
 person.setEmployer("angellist.id", "Angel List")
+person.setFriend("muneeb.id", "Muneeb Ali")
+person.setFriend("ryan.id", "Ryan Shea")
 console.log(person.profile)
 {
     "@type": "Person",
     "name": "Naval Ravikant",
+    "image": [
+        {
+            "@type": "ImageObject",
+            "name": "avatar",
+            "contentUrl": "https://pbs.twimg.com/profile_images/3696617328/667874c5936764d93d56ccc76a2bcc13.jpeg"
+        }
+    ]
+    "account": [
+        {
+            "@type": "Account",
+            "service": "facebook",
+            "identifier": "navalr",
+            "proofType": "http",
+            "proofUrl": "https://facebook.com/navalr/posts/10152190734077261"
+        },
+        {
+            "@type": "Account",
+            "service": "twitter",
+            "identifier": "naval",
+            "proofType": "http",
+            "proofUrl": "https://twitter.com/naval/status/486609266212499456"
+        }
+    ],
     "worksFor": [
         {
             "@type": "Organization",
             "name": "AngelList",
             "id": "angellist.id"
+        }
+    ],
+    "knows": [
+        {
+            "@type": "Person",
+            "name": "Muneeb Ali",
+            "id": "muneeb.id"
+        },
+        {
+            "@type": "Person",
+            "name": "Ryan Shea",
+            "id": "ryan.id"
         }
     ]
 }
@@ -76,6 +117,8 @@ console.log(organization.profile)
 var creativeWork = new CreativeWork()
 creativeWork.setName("Balloon Dog")
 creativeWork.setCreator("therealjeffkoons.id", "Jeff Koons")
+creativeWork.setDateCreated("May 9 1994")
+creativeWork.setDatePublished(new Date())
 console.log(creativeWork.profile)
 {
     "@type": "CreativeWork",
@@ -86,7 +129,9 @@ console.log(creativeWork.profile)
             "name": "Jeff Koons",
             "id": "therealjeffkoons.id"
         }
-    ]
+    ],
+    "dateCreated": "1994-05-09T00:00:00-0400",
+    "datePublished": "2015-12-10T14:44:26-0500"
 }
 ```
 
