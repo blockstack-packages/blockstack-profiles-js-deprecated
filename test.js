@@ -98,18 +98,13 @@ function testFlattening() {
     })
 }
 
-function testFileCreation(objectType, username, profile) {
+function testFileCreation(objectType, username, profile, checksums) {
     var zoneFile, tokenFile, profile
 
     test('createZoneFile', function(t) {
         t.plan(1)
 
         var hostUrls = ['https://s3.amazonaws.com/mq9/' + username + '.json']
-        var checksums = [{
-            field: 'pgp[0].publicKey',
-            hash: profileDirectory.pgpPublicKeyHash,
-            algorithm: 'SHA256'
-        }]
         zoneFile = createZoneFile(username, publicKeychain, hostUrls, checksums)
         t.ok(zoneFile, 'zone file should have been created')
         //console.log(JSON.stringify(zoneFile, null, 4))
@@ -358,8 +353,8 @@ testTokening(profileDirectory.balloondog_art)
 
 testFlattening()
 
-testFileCreation('Person', 'naval.id', profileDirectory.naval_profile)
-testFileCreation('Organization', 'google.id', profileDirectory.google_id)
-testFileCreation('CreativeWork', 'balloondog.art', profileDirectory.balloondog_art)
+testFileCreation('Person', 'naval.id', profileDirectory.naval_profile, profileDirectory.navalChecksums)
+testFileCreation('Organization', 'google.id', profileDirectory.google_id, [])
+testFileCreation('CreativeWork', 'balloondog.art', profileDirectory.balloondog_art, [])
 
 testLegacyFormat()
