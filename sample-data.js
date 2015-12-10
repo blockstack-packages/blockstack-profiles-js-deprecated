@@ -1,6 +1,7 @@
 var profileDirectory = {
     pgpPublicKeyHash: "e508f0c2c455ab79a4fabc4b51aa537e123c08abee40a87c47e6705a2bbae4ae",
     balloondog_art: {
+      "@context": "http://schema.org/",
       "@type": "CreativeWork",
       "name": "Balloon Dog",
       "creator": [
@@ -14,6 +15,7 @@ var profileDirectory = {
       "datePublished": "2015-12-10T14:44:26-0500"
     },
     google_id: {
+      "@context": "http://schema.org/",
       "@type": "Organization",
       "name": "Google",
       "legalName": "Google Inc.",
@@ -50,6 +52,7 @@ var profileDirectory = {
       }
     },
     naval_profile: {
+        "@context": "http://schema.org/",
         "@type": "Person",
         "name": "Naval Ravikant",
         "givenName": "Naval",

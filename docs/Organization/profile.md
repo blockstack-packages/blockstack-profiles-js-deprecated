@@ -1,5 +1,6 @@
 ```json
 {
+    "@context": "http://schema.org/",
     "@type": "Organization",
     "name": "Google",
     "legalName": "Google Inc.",

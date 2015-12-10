@@ -1,5 +1,6 @@
 ```json
 {
+    "@context": "http://schema.org/",
     "@type": "Person",
     "name": "Naval Ravikant",
     "givenName": "Naval",
