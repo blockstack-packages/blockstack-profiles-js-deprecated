@@ -336,7 +336,7 @@ function testCreativeWorkProfile() {
         t.plan(2)
         creativeWork.setDateCreated('May 9 1994')
         t.ok(creativeWork.profile.dateCreated, 'date created should have been set')
-        t.equal(creativeWork.profile.dateCreated, '1994-05-09T00:00:00-0400', 'date created should be equal to reference')
+        t.equal(creativeWork.profile.dateCreated.slice(0, -5), '1994-05-09T00:00:00', 'date created should be equal to reference')
     })
 
     test('setDatePublished', function(t) {
