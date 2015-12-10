@@ -227,7 +227,7 @@ Profile schema is taken from schema.org. The schema for a person record can be f
 }
 ```
 
-[<img src="/docs/button-profile.png" width="200">](/docs/person/profile.md)
+[<img src="/docs/buttons/button-profile.png" width="200">](/docs/person/profile.md)
 
 ### Profile Storage
 
@@ -276,7 +276,7 @@ The "publicKeychain" field indicates the keychain that was used to sign the toke
 }
 ```
 
-[<img src="/docs/button-zone-file.png" width="200">](/docs/person/zone-file.md)
+[<img src="/docs/buttons/button-zone-file.png" width="200">](/docs/person/zone-file.md)
 
 ### Token Files
 
@@ -308,5 +308,5 @@ The cool part is that the identities referenced are public keys, not usernames. 
 ]
 ```
 
-[<img src="/docs/button-token-file.png" width="200">](/docs/person/token-file.md)
+[<img src="/docs/buttons/button-token-file.png" width="200">](/docs/person/token-file.md)
 
