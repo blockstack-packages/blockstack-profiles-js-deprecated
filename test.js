@@ -7,12 +7,14 @@ var TokenSigner = require('jwt-js').TokenSigner,
     TokenVerifier = require('jwt-js').TokenVerifier,
     decodeToken = require('jwt-js').decodeToken,
     PrivateKeychain = require('keychain-manager').PrivateKeychain,
-    PublicKeychain = require('keychain-manager').PublicKeychain
+    PublicKeychain = require('keychain-manager').PublicKeychain,
+    dateFormat = require('dateformat')
 
 var profileDirectory = require('./sample-data')
 
 var Person = require('./index').Person,
     Organization = require('./index').Organization,
+    CreativeWork = require('./index').CreativeWork,
     createZoneFile = require('./index').createZoneFile,
     signProfileTokens = require('./index').signProfileTokens,
     getProfileFromTokens = require('./index').getProfileFromTokens,
@@ -245,14 +247,14 @@ function testPersonProfile() {
         t.plan(1)
         var person = Person.fromLegacyFormat(profileDirectory.ryan_v2)
         t.ok(person.profile, 'person profile should have been created')
-        console.log(person.profile)
+        //console.log(person.profile)
     })
 
     test('fromFlatObject', function(t) {
         t.plan(1)
         var person = Person.fromFlatObject(profileDirectory.ryan_flat)
         t.ok(person.profile, 'person profile should have been created')
-        console.log(person.profile)
+        //console.log(person.profile)
     })
 
 }
@@ -307,12 +309,57 @@ function testOrganizationProfile() {
     })
 }
 
+function testCreativeWorkProfile() {
+    var creativeWork
+
+    test('createCreativeWork', function(t) {
+        t.plan(2)
+        creativeWork = new CreativeWork()
+        t.ok(creativeWork, 'creative work should have been created')
+        t.ok(creativeWork.profile, 'profile should have been created')
+    })
+
+    test('setName', function(t) {
+        t.plan(1)
+        creativeWork.setName('Balloon Dog')
+        t.equal(creativeWork.profile.name, 'Balloon Dog', 'profile name should have been properly set')
+    })
+
+    test('setCreator', function(t) {
+        t.plan(2)
+        creativeWork.setCreator('therealjeffkoons.id')
+        t.ok(creativeWork.profile.creator, 'creator list should have been created')
+        t.equal(creativeWork.profile.creator.length, 1, 'there should be 1 creator')
+    })
+
+    test('setDateCreated', function(t) {
+        t.plan(2)
+        creativeWork.setDateCreated('May 9 1994')
+        t.ok(creativeWork.profile.dateCreated, 'date created should have been set')
+        t.equal(creativeWork.profile.dateCreated, '1994-05-09T00:00:00-0400', 'date created should be equal to reference')
+    })
+
+    test('setDatePublished', function(t) {
+        t.plan(2)
+        var datePublished = new Date()
+        creativeWork.setDatePublished(datePublished)
+        t.ok(creativeWork.profile.datePublished, 'date published should have been set')
+        t.equal(creativeWork.profile.datePublished, dateFormat(datePublished, 'isoDateTime'), 'date published should be equal to reference')
+    })
+}
+
+testPersonProfile()
+testOrganizationProfile()
+testCreativeWorkProfile()
 
 testTokening(profileDirectory.naval_profile)
 testTokening(profileDirectory.google_id)
+testTokening(profileDirectory.balloondog_art)
+
 testFlattening()
-testFileCreation('person', 'naval.id', profileDirectory.naval_profile)
-testFileCreation('organization', 'google.id', profileDirectory.google_id)
+
+testFileCreation('Person', 'naval.id', profileDirectory.naval_profile)
+testFileCreation('Organization', 'google.id', profileDirectory.google_id)
+testFileCreation('CreativeWork', 'balloondog.art', profileDirectory.balloondog_art)
+
 testLegacyFormat()
-testPersonProfile()
-testOrganizationProfile()

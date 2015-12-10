@@ -8,7 +8,11 @@
 
 ## Contents
 
-* [Usage](#usage)
+* [Types](#types)
+    * [Person](#person)
+    * [Organization](#organization)
+    * [CreativeWork](#creativework)
+* [Registration](#registration)
     * [Create a Profile Object](#create-a-profile-object)
     * [Create a Token File](#create-a-token-file)
     * [Create a Zone File](#create-a-zone-file)
@@ -24,9 +28,71 @@
     * [Token Files](#token-files)
         - [Example Token File](#example-token-file)
 
-## Usage
+## Types
 
-Follow these steps to generate a profile for a Blockchain ID:
+### Person
+
+```js
+var person = new Person()
+person.setName("Naval", "Ravikant")
+person.setEmployer("angellist.id", "Angel List")
+console.log(person.profile)
+{
+    "@type": "Person",
+    "name": "Naval Ravikant",
+    "worksFor": [
+        {
+            "@type": "Organization",
+            "name": "AngelList",
+            "id": "angellist.id"
+        }
+    ]
+}
+```
+
+### Organization
+
+```js
+var organization = new Organization()
+organization.setName("AngelList")
+organization.setEmployee("naval.id", "Naval Ravikant")
+console.log(organization.profile)
+{
+    "@type": "Organization",
+    "name": "AngelList",
+    "employee": [
+        {
+            "@type": "Person",
+            "name": "Naval Ravikant",
+            "id": "naval.id"
+        }
+    ]
+}
+```
+
+### Creative Work
+
+```js
+var creativeWork = new CreativeWork()
+creativeWork.setName("Balloon Dog")
+creativeWork.setCreator("therealjeffkoons.id", "Jeff Koons")
+console.log(creativeWork.profile)
+{
+    "@type": "CreativeWork",
+    "name": "Balloon Dog",
+    "creator": [
+        {
+            "@type": "Person",
+            "name": "Jeff Koons",
+            "id": "therealjeffkoons.id"
+        }
+    ]
+}
+```
+
+## Registration
+
+Follow these steps to create and register a profile for a Blockchain ID:
 
 1. Create a JSON profile object
 2. Convert the profile object into tokens

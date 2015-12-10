@@ -26,6 +26,7 @@
   "author": "Halfmoon Labs, Inc.",
   "license": "MIT",
   "dependencies": {
+    "dateformat": "^1.0.12",
     "elliptic-curve": "0.0.1",
     "hasprop": "0.0.3",
     "jwt-js": "^0.5.0",

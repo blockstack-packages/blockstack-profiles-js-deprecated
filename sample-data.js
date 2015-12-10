@@ -1,7 +1,19 @@
 var profileDirectory = {
     pgpPublicKeyHash: "e508f0c2c455ab79a4fabc4b51aa537e123c08abee40a87c47e6705a2bbae4ae",
+    balloondog_art: {
+      "@type": "CreativeWork",
+      "name": "Balloon Dog",
+      "creator": [
+        {
+          "@type": "Person",
+          "name": "Jeff Koons",
+          "id": "therealjeffkoons.id"
+        }
+      ],
+      "dateCreated": "1994-05-09T00:00:00-0400",
+      "datePublished": "2015-12-10T14:44:26-0500"
+    },
     google_id: {
-      "@context": "http://schema.org",
       "@type": "Organization",
       "name": "Google",
       "legalName": "Google Inc.",

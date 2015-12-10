@@ -1,13 +1,13 @@
 ```json
 {
-    "origin": "google.id",
+    "origin": "balloondog.art",
     "ttl": "1h",
     "records": [
         {
             "name": "@",
             "class": "IN",
             "type": "CNAME",
-            "data": "https://s3.amazonaws.com/mq9/google.id.json",
+            "data": "https://s3.amazonaws.com/mq9/balloondog.art.json",
             "publicKeychain": "xpub661MyMwAqRbcEnjvhJd197MnwZsQFUXHFBMgbw7dttgwmZMiiKebP7Y4YiAkTmy5SJysoJsgvQJb5NXQJSsHvVy7NUbHsXK4WBCUH4H1CEm",
             "checksums": [
                 {
